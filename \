@@ -1,0 +1,29 @@
+fn test (mut s: String) -> bool {
+    let ptr_l= s.as_mut_ptr();
+    let ptr_r= s.as_mut_ptr();
+    let iterations = s.len()/2;
+    let mut right_index = s.len();
+    println!("Length of String: {}",s.len());
+    println!("Iteration Var: {}", iterations);
+    for i in 0..iterations {
+        unsafe {
+            let left= *ptr_l.add(i);
+            let right = *ptr_r.add(right_index);
+            println!("Left Value: {}", left as char);
+            println!("Right Value: {}", right as char);
+            if left != right {
+                return false
+            } else {
+                right_index = right_index - 1;
+            }
+
+        }
+    }
+    return true
+}
+
+fn main () {
+    println!("Value: {:?}", test("AMA".to_string()));
+    // test("TESTS".to_string());
+    // test("dakjflksajlfdkj".to_string());
+}
