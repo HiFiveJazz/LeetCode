@@ -1,6 +1,7 @@
 fn length_of_last_word(s: String) -> i32{
     // println!("{}",s);
-    let mut count: i32 = 0;
+    let mut count= 0;
+    let i = 10;
     for c in s.chars().rev() {
         // println!("Character: {}",c);
         if c != ' ' {
