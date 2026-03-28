@@ -1,0 +1,15 @@
+target/
+
+Cargo.lock
+
+# Ignore rust compiled binaries (sometimes created manually)
+*.exe
+*.out
+*.bin
+.build/
+
+# Ignore incremental compilation cache
+**/*.rmeta
+**/*.rlib
+
+.DS_Store
