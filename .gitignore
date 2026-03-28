@@ -6,6 +6,7 @@ Cargo.lock
 *.exe
 *.out
 *.bin
+.build/
 
 # Ignore incremental compilation cache
 **/*.rmeta
