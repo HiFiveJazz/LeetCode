@@ -26,17 +26,16 @@ pub fn divide(mut dividend: i32, mut divisor: i32) -> i32 {
 		greater_flag = true;
 	} 
 	loop {
-		let mut temp_divisor = divisor;
-		let mut temp_quotient: i64 = 1;
 		if greater_flag {
 			break
 		}
-		while dividend >= (temp_divisor << 1) {
-			temp_divisor <<= 1;
-			temp_quotient <<= 1;
-		}
-		dividend -= temp_divisor;
-		quotient += temp_quotient;
+
+		// println!("dividend {}", dividend);
+		// println!("divisor {}", divisor);
+		// println!("quotient {}", quotient);
+		// println!("");
+		dividend -= divisor;
+		quotient += 1;
 		if divisor > dividend {
 			greater_flag = true;
 		} 
