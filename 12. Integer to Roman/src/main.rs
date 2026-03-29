@@ -78,7 +78,6 @@ pub fn int_to_roman(mut number: i32) -> String {
 			break
 		}
 		number = number - (main_number * divider);
-		
 	}
 	return result;
 }
