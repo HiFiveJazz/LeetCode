@@ -1,4 +1,4 @@
-pub fn my_pow(mut x: f64, mut n: i32) -> f64 {
+pub fn my_pow(mut x: f64, n: i32) -> f64 {
 
 	let mut n = n as i64;
 	let mut result: f64 = 1.0;
