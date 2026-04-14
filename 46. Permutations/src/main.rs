@@ -2,12 +2,14 @@ struct Solution;
 
 impl Solution {
     pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        // Basecase
         if nums.is_empty()  {
             return vec![vec![]];
         }
 
         let first = nums[0];
         let perms = Self::permute(nums[1..].to_vec());
+        println!("{:?}", perms);
         let mut res: Vec<Vec<i32>> = vec![];
 
         for p in perms {
@@ -19,12 +21,13 @@ impl Solution {
         }
         res
     }
+
 }
 
 fn main() {
     let nums = vec![1,2,3];
     let result = Solution::permute(nums);
-    println!("Answer: {:?}", result);
+    // println!("Answer: {:?}", result);
 }
 
 // pub fn factorial(num: i32) -> i32 {
