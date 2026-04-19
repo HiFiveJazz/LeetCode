@@ -9,6 +9,21 @@ impl Solution {
         return '0'.to_string();
     }
 
+    pub fn remove_leading_zeros(mut num: String) -> String {
+        let mut start = 0;
+        for (index, c) in num.clone().char_indices() {
+            println!("Char {}: {}", index, c);
+            if c != '0' {
+                start = index;
+                break
+            }
+        }
+        if num.chars().all(|c| c == '0') {
+            return "0".to_string();
+        }
+        num[start..].to_string()
+    }
+
     pub fn big_int_addition_array(num1: String, num2: String) -> Vec<String>{
         let mut result = vec![];
         let mut trailing_zeros = String::from("");
@@ -98,6 +113,7 @@ impl Solution {
             }
             addition_number = addition_number.chars().rev().collect();
             addition_number.push_str(&trailing_zeros);
+            addition_number = Self::remove_leading_zeros(addition_number);
             trailing_zeros.push('0');
             result.push(addition_number);
         }
@@ -112,6 +128,6 @@ impl Solution {
 
 fn main() {
 
-    let answer = Solution::multiply("456".to_string(), "123".to_string());
+    let answer = Solution::multiply("456".to_string(), "0".to_string());
     println!("Answer: {}", answer);
 }
