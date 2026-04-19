@@ -2,17 +2,14 @@ struct Solution;
 
 impl Solution {
     pub fn multiply(num1: String, num2: String) -> String {
-        println!("Num1: {}", num1);
-        println!("Num2: {}", num2);
         let test = Self::big_int_addition_array(num1, num2);
-        println!("Vec: {:?}", test);
-        return '0'.to_string();
+        let test2 = Self::array_addition(test);
+        return test2;
     }
 
     pub fn remove_leading_zeros(mut num: String) -> String {
         let mut start = 0;
         for (index, c) in num.clone().char_indices() {
-            println!("Char {}: {}", index, c);
             if c != '0' {
                 start = index;
                 break
@@ -120,14 +117,116 @@ impl Solution {
         result
     }
 
+
+    pub fn big_int_addition (num1: String, num2: String) -> String {
+        let num1: Vec<char> = num1.chars().rev().collect();
+        let num2: Vec<char> = num2.chars().rev().collect();
+        let length;
+        if num1.len() >= num2.len() {
+            length = num1.len();
+        } else {
+            length = num2.len()
+        }
+        let mut result = String::from("");
+        let mut carry: u8 = 0;
+        for i in 0..length {
+            let num_1_char = *num1.get(i).unwrap_or(&'0');
+            let num_2_char = *num2.get(i).unwrap_or(&'0');
+            let number_1: u8;
+            let number_2: u8;
+            match num_1_char {
+                '0' => {
+                    number_1 = 0;
+                }
+                '1' => {
+                    number_1 = 1;
+                }
+                '2' => {
+                    number_1 = 2;
+                }
+                '3' => {
+                    number_1 = 3;
+                }
+                '4' => {
+                    number_1 = 4;
+                }
+                '5' => {
+                    number_1 = 5;
+                }
+                '6' => {
+                    number_1 = 6;
+                }
+                '7' => {
+                    number_1 = 7;
+                }
+                '8' => {
+                    number_1 = 8;
+                }
+                '9' => {
+                    number_1 = 9;
+                }
+                _=> panic!(),
+            }
+            match num_2_char {
+                '0' => {
+                    number_2 = 0;
+                }
+                '1' => {
+                    number_2 = 1;
+                }
+                '2' => {
+                    number_2 = 2;
+                }
+                '3' => {
+                    number_2 = 3;
+                }
+                '4' => {
+                    number_2 = 4;
+                }
+                '5' => {
+                    number_2 = 5;
+                }
+                '6' => {
+                    number_2 = 6;
+                }
+                '7' => {
+                    number_2 = 7;
+                }
+                '8' => {
+                    number_2 = 8;
+                }
+                '9' => {
+                    number_2 = 9;
+                }
+                _=> panic!(),
+            }
+            let mut digit = number_1 + number_2 + carry;
+            if digit > 9 {
+                carry = 1;
+                digit -= 10;
+            } else {
+                carry = 0;
+            }
+            result.push(digit.to_string().chars().nth(0).unwrap());
+        }
+        if carry != 0 {
+            result.push('1');
+        }
+        result.chars().rev().collect()
+    }
+
     pub fn array_addition (array: Vec<String>) -> String {
-        return "0".to_string();
+        let mut number_1= array.get(0).cloned().unwrap_or("0".to_string());
+        for i in 1..array.len() {
+            let number_2 = array.get(i).cloned().unwrap_or("0".to_string());
+            number_1 = Self::big_int_addition(number_1, number_2) 
+        }
+        number_1
     }
 }
 
 
 fn main() {
-
-    let answer = Solution::multiply("456".to_string(), "0".to_string());
+    let answer = Solution::multiply("456".to_string(), "123".to_string());
     println!("Answer: {}", answer);
 }
