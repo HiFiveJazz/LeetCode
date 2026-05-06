@@ -5,12 +5,18 @@ impl Solution {
         if x < 0 {
             return false;
         }
-        let input_string  = x.to_string();
-        input_string == input_string.chars().rev().collect::<String>()
+        let mut reverse = 0;
+        let mut forward = x;
+        while forward != 0 {
+            reverse = reverse * 10 + forward % 10;
+            forward /= 10;
+        }
+        if reverse == x { true } else { false } 
     }
 }
 
 fn main() {
-    let answer = Solution::is_palindrome(-0);
+    let answer = Solution::is_palindrome(1111);
+    let answer = 123 % 10;
     println!("Answer: {}", answer);
 }
