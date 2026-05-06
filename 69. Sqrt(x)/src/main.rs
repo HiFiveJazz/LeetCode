@@ -9,23 +9,25 @@ impl Solution {
             return 1;
         }
         let x = x as u32;
-        let mut answer = 0;
-        for i in 0..x {
-            if i * i == x {
-                answer = i;
-                break
+        let mut left: u32 = 1;
+        let mut right: u32 = x/2;
+        let mut answer = 1;
+        while left <= right {
+            let mid = left + (right - left) / 2; 
+            if mid <= x / mid {
+                answer = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
-            if i * i >= x {
-                answer = i-1;
-                break
-            }
+
         }
         answer as i32
     }
 }
 
 fn main() {
-    let answer = Solution::my_sqrt(2147483647);
+    let answer = Solution::my_sqrt(4);
     println!("Answer: {}", answer);
 }
 
