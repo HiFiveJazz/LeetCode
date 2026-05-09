@@ -5,39 +5,27 @@ struct Solution;
 impl Solution {
     pub fn length_of_longest_substring(s: String) -> i32 {
         let mut set: HashSet<char> = HashSet::new();
+        let chars: Vec<char> = s.chars().collect();
+        let mut left = 0;
         let mut max_len = 0;
-        let mut length = 1;
-        let mut index = 0;
-        let mut rotation= 0;
-        while index < s.len() {
-            for char in s.chars() {
-                if index != 0 {
-                    index -= 1;
-                    continue;
-                }
-                if set.contains(&char) {
-                    break
-                }
-                println!("Char:    {}, {}", char, set.len());
-                if (set.len() + 1) as i32 > length {
-                    length = (set.len() + 1) as i32;
-                }
-                set.insert(char);
+        for right in 0..chars.len() {
+            while set.contains(&chars[right]) {
+                set.remove(&chars[left]);
+                left += 1;
             }
-            println!("--------------");
-            if length > max_len {
-                max_len = length;
+
+            set.insert(chars[right]);
+
+            let current_window_len = (right - left + 1) as i32;
+            if current_window_len > max_len {
+                max_len = current_window_len;
             }
-            set.clear();
-            rotation += 1;
-            index = rotation;
-            length = 1;
         }
         max_len
     }
 }
 
 fn main() {
-    let answer = Solution::length_of_longest_substring(String::from("a"));
+    let answer = Solution::length_of_longest_substring(String::from(""));
     println!("Answer: {}", answer);
 }
