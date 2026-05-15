@@ -12,8 +12,8 @@ fn main() {
             let mut count = lock.lock().unwrap();
             *count = i;
             println!("Thread 1 {}", *count);
-            cvar.notify_one();
         }
+        cvar.notify_one();
     });
 
 
