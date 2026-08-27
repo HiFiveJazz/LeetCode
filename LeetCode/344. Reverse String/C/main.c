@@ -1,12 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "stdlib.h"
+#include "stdio.h"
 
 void reverseString(char* s, int sSize) {
-int iterateSize = sSize / 2;
-for (int i = 0; i < iterateSize; i++) {
-    char temp = s[i];
-    s[i] = s[sSize - 1 - i];
-    s[sSize - 1 - i] = temp;
+  for (int i = 0; i < sSize/2; i++) {
+    char temp = s[i]; 
+    s[i] = s[sSize-i-1];
+    s[sSize-i-1] = temp;
   }
 }
 
