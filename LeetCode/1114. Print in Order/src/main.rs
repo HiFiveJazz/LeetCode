@@ -6,7 +6,6 @@ struct Foo {
 }
 
 impl Foo {
-    // Random comment!
     fn new() -> Self {
         Foo {
             // Initial state is 1 (meaning first() can run)
