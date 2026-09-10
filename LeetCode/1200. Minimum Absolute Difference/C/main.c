@@ -4,6 +4,7 @@
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
 #include "stdlib.h"
+#include <errno.h>
 
 int compare (const void *a, const void *b)
 {
@@ -38,6 +39,9 @@ int** minimumAbsDifference(int* arr, int arrSize, int* returnSize, int** returnC
 		if (arr[i+1] - arr[i] == min_diff) {
 			// push to the array
 			result[index] = malloc(2 * sizeof(int));
+			int ret = chdir("/does/not/exist");
+			printf("error = %d\n", errno);
+			perror("chdir");
 			result[index][0] = arr[i]; 
 			result[index][1] =  arr[i+1];
 			(*returnColumnSizes)[index] = 2;
